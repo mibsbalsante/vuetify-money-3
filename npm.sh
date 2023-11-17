@@ -26,9 +26,11 @@ echo "\033[1;36m  #    # #      #    #       #      #    # #    # \033[0m";
 echo "\033[1;36m  #    # #      #    #       #      ###### #####  \033[0m";
 echo
 echo "Copiando arquivos...";
+mkdir -p npm/src/components
 cp package.json npm;
 cp README.md npm;
-cp src/components/* npm;
+cp src/components/* npm/src/components;
+cp lib/* npm;
 echo "Copiado.";
 if [ $1 = "-pk" ];
 then
@@ -46,7 +48,7 @@ then
     echo "Publicado."
 fi;
 echo "Excluindo arquivos...";
-rm npm/*
+rm -r npm/*
 echo "Arquivos excluidos.";
 echo "Fim.";
 

@@ -1,24 +1,24 @@
 <template>
   <div>
     <v-text-field
-      v-model="cmpValue"
       v-bind="properties"
-      v-bind:label="label"
-      v-bind:placeholder="placeholder"
-      v-bind:readonly="readonly"
-      v-bind:disabled="disabled"
-      v-bind:outlined="outlined"
-      v-bind:dense="dense"
-      v-bind:hide-details="hideDetails"
-      v-bind:error="error"
-      v-bind:error-messages="errorMessages"
-      v-bind:rules="rules"
-      v-bind:clearable="clearable"
-      v-bind:backgroundColor="backgroundColor"
-      v-bind:prefix="options.prefix"
-      v-bind:suffix="options.suffix"
-      v-on:keypress="keyPress"
-      v-on:blur="onBlur"
+      v-model="cmpValue"
+      :label="label"
+      :placeholder="placeholder"
+      :readonly="readonly"
+      :disabled="disabled"
+      :variant="variant"
+      :density="density"
+      :hide-details="hideDetails"
+      :error="error"
+      :error-messages="errorMessages"
+      :rules="rules"
+      :clearable="clearable"
+      :bgColor="bgColor"
+      :prefix="options.prefix"
+      :suffix="options.suffix"
+      @keypress="keyPress"
+      @blur="onBlur"
     ></v-text-field>
   </div>
 </template>
@@ -27,7 +27,6 @@
 export default {
   props: {
     modelValue: {
-      // type: String,
       type: [String, Number],
       default: "0"
     },
@@ -43,9 +42,9 @@ export default {
       type: Boolean,
       default: false
     },
-    dense: {
-      type: Boolean,
-      default: false
+    density: {
+      type: String,
+      default: 'default'
     },
     error: {
       type: Boolean,
@@ -67,15 +66,15 @@ export default {
       type: Boolean,
       default: false
     },
-    outlined: {
-      type: Boolean,
-      default: false
+    variant: {
+      type: String,
+      default: 'filled'
     },
     clearable: {
       type: Boolean,
       default: false
     },
-    backgroundColor: {
+    bgColor: {
       type: String,
       default: "white"
     },
