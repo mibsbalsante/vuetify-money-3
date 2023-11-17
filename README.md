@@ -1,6 +1,6 @@
-# vuetify-money
+# vuetify-money-3
 
-If you use Vuejs with Vuetify 2.x and you need a component to work with money format, maybe this can help you.
+> This is a fork from [vuetify-money](https://github.com/juareznasato/vuetify-money) updated to work with Vuetify 3.x and Vue 3.x. Please refer to the original project if you need Vue 2.x compatibility.
 
 v-text-field: 
 R$ 12.345.678,90
@@ -10,23 +10,36 @@ v-model:
 
 ## Dependency
 - VueJS
-- Vuetify 2.x
-
-## Links
-<p><a href="https://bnm4g.csb.app/">See DEMO here</a></p>
-<p><a href="https://github.com/juareznasato/vuetify-money" target="_blank">GitHub</a></p>
-<p><a href="https://www.npmjs.com/package/vuetify-money" target="_blank">npm</a></p>
+- Vuetify 3.x
 
 ## Install
+_Only available installing with GitHub repo_
+
 ```
-$ npm install vuetify-money --save
+$ npm install github:mibsbalsante/vuetify-money-3#vue-3
+```
 
-Register component in your main.js file:
+Register the component globally in your main.js file:
 
-import VuetifyMoney from "vuetify-money";
+```
+import VuetifyMoney from "vuetify-money-3";
 app.use(VuetifyMoney);
+```
 
-Parent component:
+Or import locally as a component:
+
+```js
+import { VuetifyMoney } from "vuetify-money-3";
+
+export default {
+	props: {},
+	components: { VuetifyMoney },
+	render: () => {}
+}
+
+```
+
+```html
 <template>
   <div>
     <vuetify-money
