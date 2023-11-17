@@ -1,10 +1,10 @@
 {
-  "name": "vuetify-money",
-  "version": "1.2.0",
-  "description": "Money component for vuetify 2.x.",
+  "name": "vuetify-money-3",
+  "version": "2.0.0-alpha",
+  "description": "Money component for vuetify 3.x.",
   "author": {
-    "name": "Juarez Nasato",
-    "email": "juareznasato@gmail.com"
+    "name": "Mibs",
+    "email": "mibsbalsante@gmail.com"
   },
   "keywords": [
     "vuejs",
@@ -14,30 +14,46 @@
     "currency",
     "decimal"
   ],
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "files": [
+    "src/components/*",
+    "lib/*"
+  ],
+  "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/juareznasato/vuetify-money.git"
+    "url": "https://github.com/mibsbalsante/vuetify-money-3.git"
   },
   "private": false,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "vite serve",
+    "build": "vite build",
+    "lint": "eslint . --fix --ignore-path .gitignore"
   },
   "license": "MIT",
   "readmeFilename": "README.md",
-  "main": "index.js",
+  "main": "src/index.js",
+  "dependencies": {
+    "@mdi/font": "7.0.96",
+    "vue": "^3.3.8",
+    "vuetify": "^3.4.2"
+  },
   "devDependencies": {
-    "@mdi/font": "^5.0.45",
-    "@vue/cli-plugin-babel": "^4.1.0",
-    "@vue/cli-plugin-eslint": "^4.1.0",
-    "@vue/cli-service": "^4.1.0",
-    "@vue/eslint-config-prettier": "^5.0.0",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^5.16.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-vue": "^5.0.0",
-    "prettier": "^1.19.1",
-    "vue-template-compiler": "^2.6.10"
+    "@babel/core": "^7.23.3",
+    "@babel/eslint-parser": "^7.23.3",
+    "@mdi/font": "^7.3.67",
+    "@vitejs/plugin-vue": "^4.5.0",
+    "eslint": "^8.53.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-vue": "^9.18.1",
+    "prettier": "^3.1.0",
+    "vite": "^4.5.0",
+    "vite-plugin-vuetify": "^1.0.2"
+  },
+  "peerDependencies": {
+    "vue": "^3",
+    "vuetify": "^3"
   }
 }

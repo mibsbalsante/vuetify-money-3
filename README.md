@@ -21,15 +21,10 @@ v-model:
 ```
 $ npm install vuetify-money --save
 
-Register component:
-1- Create a src/plugins/vuetify-money.js file with the following content:
-import Vue from "vue";
-import VuetifyMoney from "vuetify-money";
-Vue.use(VuetifyMoney);
-export default VuetifyMoney;
+Register component in your main.js file:
 
-2- Add file to src/main.js:
-import "./plugins/vuetify-money.js";
+import VuetifyMoney from "vuetify-money";
+app.use(VuetifyMoney);
 
 Parent component:
 <template>
