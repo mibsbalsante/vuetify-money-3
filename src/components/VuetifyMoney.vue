@@ -1,34 +1,32 @@
 <template>
   <div>
     <v-text-field
-      v-model="cmpValue"
-      v-bind:label="label"
-      v-bind:placeholder="placeholder"
-      v-bind:readonly="readonly"
-      v-bind:disabled="disabled"
-      v-bind:outlined="outlined"
-      v-bind:dense="dense"
-      v-bind:hide-details="hideDetails"
-      v-bind:error="error"
-      v-bind:error-messages="errorMessages"
-      v-bind:rules="rules"
-      v-bind:clearable="clearable"
-      v-bind:backgroundColor="backgroundColor"
-      v-bind:prefix="options.prefix"
-      v-bind:suffix="options.suffix"
       v-bind="properties"
-      v-on:keypress="keyPress"
-      v-on:blur="onBlur"
+      v-model="cmpValue"
+      :label="label"
+      :placeholder="placeholder"
+      :readonly="readonly"
+      :disabled="disabled"
+      :variant="variant"
+      :density="density"
+      :hide-details="hideDetails"
+      :error="error"
+      :error-messages="errorMessages"
+      :rules="rules"
+      :clearable="clearable"
+      :bgColor="bgColor"
+      :prefix="options.prefix"
+      :suffix="options.suffix"
+      @keypress="keyPress"
+      @blur="onBlur"
     ></v-text-field>
   </div>
 </template>
 
 <script>
 export default {
-  model: { prop: "value", event: "input" },
   props: {
-    value: {
-      // type: String,
+    modelValue: {
       type: [String, Number],
       default: "0"
     },
@@ -44,9 +42,9 @@ export default {
       type: Boolean,
       default: false
     },
-    dense: {
-      type: Boolean,
-      default: false
+    density: {
+      type: String,
+      default: 'default'
     },
     error: {
       type: Boolean,
@@ -68,15 +66,15 @@ export default {
       type: Boolean,
       default: false
     },
-    outlined: {
-      type: Boolean,
-      default: false
+    variant: {
+      type: String,
+      default: 'filled'
     },
     clearable: {
       type: Boolean,
       default: false
     },
-    backgroundColor: {
+    bgColor: {
       type: String,
       default: "white"
     },
@@ -122,12 +120,12 @@ export default {
   computed: {
     cmpValue: {
       get: function() {
-        return this.value !== null && this.value !== ""
-          ? this.humanFormat(this.value.toString())
+        return this.modelValue !== null && this.modelValue !== ""
+          ? this.humanFormat(this.modelValue.toString())
           : this.valueWhenIsEmpty;
       },
       set: function(newValue) {
-        this.$emit("input", this.machineFormat(newValue));
+        this.$emit("update:modelValue", this.machineFormat(newValue));
       }
     }
   },
@@ -214,7 +212,7 @@ export default {
     },
     targetLength() {
       if (
-        Number(this.cleanNumber(this.value).length) >=
+        Number(this.cleanNumber(this.modelValue).length) >=
         Number(this.options.length)
       ) {
         return true;
@@ -224,8 +222,8 @@ export default {
     },
     onBlur() {
       if (
-        this.value.length === 0 ||
-        parseFloat(this.value) <= this.valueOptions.min
+        this.modelValue.length === 0 ||
+        parseFloat(this.modelValue) <= this.valueOptions.min
       )
         this.$emit(
           this.valueOptions.minEvent || "SetValueMin",
@@ -234,7 +232,7 @@ export default {
 
       if (
         this.valueOptions.max &&
-        parseFloat(this.value) >= this.valueOptions.max
+        parseFloat(this.modelValue) >= this.valueOptions.max
       )
         this.$emit(
           this.valueOptions.maxEvent || "SetValueMax",

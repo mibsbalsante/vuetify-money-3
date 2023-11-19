@@ -1,9 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-card-title>
-      <v-toolbar dark class="elevation-2" color="cyan">
-        <v-toolbar-title>vuetify-money</v-toolbar-title>
-      </v-toolbar>
+      <v-toolbar theme="dark" class="elevation-2" color="cyan" title="vuetify-money" />
     </v-card-title>
     <v-card-text>
       <v-container>

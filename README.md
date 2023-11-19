@@ -1,6 +1,6 @@
-# vuetify-money
+# vuetify-money-3
 
-If you use Vuejs with Vuetify 2.x and you need a component to work with money format, maybe this can help you.
+> This is a fork from [vuetify-money](https://github.com/juareznasato/vuetify-money) updated to work with Vuetify 3.x and Vue 3.x. Please refer to the original project if you need Vue 2.x compatibility.
 
 v-text-field: 
 R$ 12.345.678,90
@@ -10,41 +10,49 @@ v-model:
 
 ## Dependency
 - VueJS
-- Vuetify 2.x
-
-## Links
-<p><a href="https://bnm4g.csb.app/">See DEMO here</a></p>
-<p><a href="https://github.com/juareznasato/vuetify-money" target="_blank">GitHub</a></p>
-<p><a href="https://www.npmjs.com/package/vuetify-money" target="_blank">npm</a></p>
+- Vuetify 3.x
 
 ## Install
+_Only available installing with GitHub repo_
+
 ```
-$ npm install vuetify-money --save
+$ npm install github:mibsbalsante/vuetify-money-3#vue-3
+```
 
-Register component:
-1- Create a src/plugins/vuetify-money.js file with the following content:
-import Vue from "vue";
-import VuetifyMoney from "vuetify-money";
-Vue.use(VuetifyMoney);
-export default VuetifyMoney;
+Register the component globally in your main.js file:
 
-2- Add file to src/main.js:
-import "./plugins/vuetify-money.js";
+```
+import VuetifyMoney from "vuetify-money-3";
+app.use(VuetifyMoney);
+```
 
-Parent component:
+Or import locally as a component:
+
+```js
+import { VuetifyMoney } from "vuetify-money-3";
+
+export default {
+	props: {},
+	components: { VuetifyMoney },
+	render: () => {}
+}
+
+```
+
+```html
 <template>
   <div>
     <vuetify-money
       v-model="value"
-      v-bind:label="label"
-      v-bind:placeholder="placeholder"
-      v-bind:readonly="readonly"
-      v-bind:disabled="disabled"
-      v-bind:outlined="outlined"
-      v-bind:clearable="clearable"
-      v-bind:valueWhenIsEmpty="valueWhenIsEmpty"
-      v-bind:options="options"
-      v-bind:properties="properties"
+      :label="label"
+      :placeholder="placeholder"
+      :readonly="readonly"
+      :disabled="disabled"
+      :variant="variant"
+      :clearable="clearable"
+      :valueWhenIsEmpty="valueWhenIsEmpty"
+      :options="options"
+      :properties="properties"
     />
     Parent v-model: {{ value }}
   </div>
@@ -57,7 +65,7 @@ export default {
     placeholder: " ",
     readonly: false,
     disabled: false,
-    outlined: true,
+    variant: 'outlined',
     clearable: true,
     valueWhenIsEmpty: "",
     options: {
@@ -108,12 +116,6 @@ export default {
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" sdnum="1046;0;@">v-text-field property</td>
 	</tr>
 	<tr>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="17" align="left">dense</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left">Boolean</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center">false</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" sdnum="1046;0;@">v-text-field property</td>
-	</tr>
-	<tr>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="17" align="left">error</td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left">Boolean</td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center">false</td>
@@ -138,9 +140,15 @@ export default {
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" sdnum="1046;0;@">v-text-field property</td>
 	</tr>
 	<tr>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="17" align="left">outlined</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left">Boolean</td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center">false</td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="17" align="left">variant</td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left">String</td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center">filled</td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" sdnum="1046;0;@">v-text-field property</td>
+	</tr>
+	<tr>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="17" align="left">density</td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left">String</td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center">default</td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" sdnum="1046;0;@">v-text-field property</td>
 	</tr>
 	<tr>
@@ -150,7 +158,7 @@ export default {
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" sdnum="1046;0;@">v-text-field property</td>
 	</tr>
 	<tr>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="17" align="left">backgroundColor</td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="17" align="left">bgColor</td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left">String</td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center">white</td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" sdnum="1046;0;@">v-text-field property</td>
