@@ -144,7 +144,7 @@ export default {
     },
     machineFormat(number) {
       if (number) {
-        number = this.cleanNumber(number);
+        number = this.clearNumber(number);
         // Ajustar quantidade de zeros à esquerda
         number = number.padStart(parseInt(this.options.precision) + 1, "0");
         // Incluir ponto na casa correta, conforme a precisão configurada
@@ -165,12 +165,11 @@ export default {
         number = this.valueWhenIsEmpty;
       }
       if (this.options.precision === 0) {
-        number = this.cleanNumber(number);
+        number = this.clearNumber(number);
       }
       return number;
     },
     keyPress($event) {
-      // console.log($event.keyCode); //keyCodes value
       let keyCode = $event.keyCode ? $event.keyCode : $event.which;
       // if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) {
       if (keyCode < 48 || keyCode > 57) {
@@ -182,7 +181,7 @@ export default {
       }
     },
     // Retira todos os caracteres não numéricos e zeros à esquerda
-    cleanNumber: function(value) {
+    clearNumber: function(value) {
       let result = "";
       if (value) {
         let flag = false;
@@ -211,14 +210,10 @@ export default {
       return result;
     },
     targetLength() {
-      if (
-        Number(this.cleanNumber(this.modelValue).length) >=
-        Number(this.options.length)
-      ) {
-        return true;
-      } else {
-        return false;
-      }
+      return (
+        Number(this.clearNumber(this.modelValue).length) >=
+        Number(this.options.length + this.options.precision)
+      ) 
     },
     onBlur() {
       if (
