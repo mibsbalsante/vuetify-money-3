@@ -44,7 +44,7 @@ export default {
     },
     density: {
       type: String,
-      default: 'default'
+      default: "default"
     },
     error: {
       type: Boolean,
@@ -68,7 +68,7 @@ export default {
     },
     variant: {
       type: String,
-      default: 'filled'
+      default: "filled"
     },
     clearable: {
       type: Boolean,
@@ -84,7 +84,7 @@ export default {
     },
     valueOptions: {
       type: Object,
-      default: function() {
+      default: function () {
         return {
           min: 0,
           minEvent: "SetValueMin"
@@ -93,7 +93,7 @@ export default {
     },
     options: {
       type: Object,
-      default: function() {
+      default: function () {
         return {
           locale: "pt-BR",
           prefix: "",
@@ -106,7 +106,7 @@ export default {
     // Other v-text-field properties
     properties: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
       }
     }
@@ -119,18 +119,18 @@ export default {
   */
   computed: {
     cmpValue: {
-      get: function() {
+      get: function () {
         return this.modelValue !== null && this.modelValue !== ""
           ? this.humanFormat(this.modelValue.toString())
           : this.valueWhenIsEmpty;
       },
-      set: function(newValue) {
+      set: function (newValue) {
         this.$emit("update:modelValue", this.machineFormat(newValue));
       }
     }
   },
   methods: {
-    humanFormat: function(number) {
+    humanFormat: function (number) {
       if (isNaN(number)) {
         number = "";
       } else {
@@ -142,7 +142,7 @@ export default {
       }
       return number;
     },
-    machineFormat(number) {
+    machineFormat: function (number) {
       if (number) {
         number = this.clearNumber(number);
         // Ajustar quantidade de zeros à esquerda
@@ -169,19 +169,19 @@ export default {
       }
       return number;
     },
-    keyPress($event) {
-      let keyCode = $event.keyCode ? $event.keyCode : $event.which;
-      // if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) {
-      if (keyCode < 48 || keyCode > 57) {
-        // 46 is dot
+    keyPress: function ($event) {
+      const key = $event.key;
+
+      if (Number.isNaN(Number(key))) {
         $event.preventDefault();
       }
+
       if (this.targetLength()) {
         $event.preventDefault();
       }
     },
     // Retira todos os caracteres não numéricos e zeros à esquerda
-    clearNumber: function(value) {
+    clearNumber: function (value) {
       let result = "";
       if (value) {
         let flag = false;
@@ -202,20 +202,20 @@ export default {
       }
       return result;
     },
-    isInteger(value) {
+    isInteger: function (value) {
       let result = false;
       if (Number.isInteger(parseInt(value))) {
         result = true;
       }
       return result;
     },
-    targetLength() {
+    targetLength: function () {
       return (
         Number(this.clearNumber(this.modelValue).length) >=
         Number(this.options.length + this.options.precision)
-      ) 
+      );
     },
-    onBlur() {
+    onBlur: function () {
       if (
         this.modelValue.length === 0 ||
         parseFloat(this.modelValue) <= this.valueOptions.min
