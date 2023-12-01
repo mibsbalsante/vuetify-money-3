@@ -9,17 +9,17 @@
           <v-col cols="4" sm="4" md="4">
             <vuetify-money
               v-model="value1"
-              v-bind:label="label1"
-              v-bind:readonly="readonly1"
-              v-bind:disabled="disabled1"
-              v-bind:outlined="outlined1"
-              v-bind:clearable="clearable1"
-              v-bind:valueWhenIsEmpty="valueWhenIsEmpty1"
-              v-bind:options="options1"
-              v-bind:properties="properties1"
+              :label="label1"
+              :readonly="readonly1"
+              :disabled="disabled1"
+              :variant="variant1"
+              :clearable="clearable1"
+              :valueWhenIsEmpty="valueWhenIsEmpty1"
+              :options="options1"
+              :properties="properties1"
               :valueOptions="valueOptions1"
-              v-on:CustomMinEvent="value1 = $event"
-              v-on:CustomMaxEvent="value1 = $event"
+              @CustomMinEvent="value1 = $event"
+              @CustomMaxEvent="value1 = $event"
             />
             Parent v-model: {{ value1 }}
           </v-col>
@@ -28,14 +28,14 @@
           <v-col cols="4" sm="4" md="4">
             <vuetify-money
               v-model="value2"
-              v-bind:label="label2"
-              v-bind:readonly="readonly2"
-              v-bind:disabled="disabled2"
-              v-bind:outlined="outlined2"
-              v-bind:clearable="clearable2"
-              v-bind:valueWhenIsEmpty="valueWhenIsEmpty2"
-              v-bind:options="options2"
-              v-bind:properties="properties2"
+              :label="label2"
+              :readonly="readonly2"
+              :disabled="disabled2"
+              :variant="variant2"
+              :clearable="clearable2"
+              :valueWhenIsEmpty="valueWhenIsEmpty2"
+              :options="options2"
+              :properties="properties2"
             />
             Parent v-model: {{ value2 }}
           </v-col>
@@ -58,7 +58,7 @@ export default {
     label1: "Valor pt-BR",
     readonly1: false,
     disabled1: false,
-    outlined1: true,
+    variant1: 'outlined',
     clearable1: true,
     valueWhenIsEmpty1: "", // "0" or "" or null
     valueOptions1: {
@@ -82,7 +82,7 @@ export default {
     label2: "Value en-US",
     readonly2: false,
     disabled2: false,
-    outlined2: true,
+    variant2: 'outlined',
     clearable2: true,
     valueWhenIsEmpty2: "", // "0" or "" or null
     options2: {
